@@ -1,12 +1,11 @@
 .PHONY: all clean build view
+VERSION=v0.1.0
 
 all: clean build
 
 build:
 	swagger generate client -f ./swagger.json -A gios-api-client
 
-
- generate client -f /home/michal/www/gios-api-client/swagger.json -A gios-api-client
 clean:
 	rm -rf restapi
 	rm -rf models
@@ -15,4 +14,7 @@ view:
 	swagger serve ./swagger.json
 
 release:
-	$GOPATH/bin/git-chglog 
+	$GOPATH/bin/git-chglog --next-tag $(VERSION) -o CHANGELOG.md
+	git add CHANGELOG.md
+	git commit -m "Release $(VERSION)"
+	git tag $(VERSION)
