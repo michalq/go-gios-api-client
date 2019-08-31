@@ -3,10 +3,10 @@
 all: clean build
 
 build:
-	swagger generate server -f ./swagger.json -A gios-api-client
+	swagger generate client -f ./swagger.json -A gios-api-client
 
 clean:
-	rm -rf client
+	rm -rf restapi
 	rm -rf models
 
 view:
