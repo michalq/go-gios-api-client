@@ -22,19 +22,19 @@ type Station struct {
 
 	// gegr lat
 	// Required: true
-	GegrLat *string `json:"gegrLat"`
+	GegrLat string `json:"gegrLat"`
 
 	// gegr lon
 	// Required: true
-	GegrLon *string `json:"gegrLon"`
+	GegrLon string `json:"gegrLon"`
 
 	// id
 	// Required: true
-	ID *int64 `json:"id"`
+	ID int64 `json:"id"`
 
 	// station name
 	// Required: true
-	StationName *string `json:"stationName"`
+	StationName string `json:"stationName"`
 }
 
 // Validate validates this station
@@ -87,7 +87,7 @@ func (m *Station) validateCity(formats strfmt.Registry) error {
 
 func (m *Station) validateGegrLat(formats strfmt.Registry) error {
 
-	if err := validate.Required("gegrLat", "body", m.GegrLat); err != nil {
+	if err := validate.RequiredString("gegrLat", "body", string(m.GegrLat)); err != nil {
 		return err
 	}
 
@@ -96,7 +96,7 @@ func (m *Station) validateGegrLat(formats strfmt.Registry) error {
 
 func (m *Station) validateGegrLon(formats strfmt.Registry) error {
 
-	if err := validate.Required("gegrLon", "body", m.GegrLon); err != nil {
+	if err := validate.RequiredString("gegrLon", "body", string(m.GegrLon)); err != nil {
 		return err
 	}
 
@@ -105,7 +105,7 @@ func (m *Station) validateGegrLon(formats strfmt.Registry) error {
 
 func (m *Station) validateID(formats strfmt.Registry) error {
 
-	if err := validate.Required("id", "body", m.ID); err != nil {
+	if err := validate.Required("id", "body", int64(m.ID)); err != nil {
 		return err
 	}
 
@@ -114,7 +114,7 @@ func (m *Station) validateID(formats strfmt.Registry) error {
 
 func (m *Station) validateStationName(formats strfmt.Registry) error {
 
-	if err := validate.Required("stationName", "body", m.StationName); err != nil {
+	if err := validate.RequiredString("stationName", "body", string(m.StationName)); err != nil {
 		return err
 	}
 

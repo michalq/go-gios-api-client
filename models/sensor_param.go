@@ -19,7 +19,7 @@ type SensorParam struct {
 
 	// id param
 	// Required: true
-	IDParam *int64 `json:"idParam"`
+	IDParam int64 `json:"idParam"`
 
 	// param code
 	// Required: true
@@ -27,11 +27,11 @@ type SensorParam struct {
 
 	// param formula
 	// Required: true
-	ParamFormula *string `json:"paramFormula"`
+	ParamFormula string `json:"paramFormula"`
 
 	// param name
 	// Required: true
-	ParamName *string `json:"paramName"`
+	ParamName string `json:"paramName"`
 }
 
 // Validate validates this sensor param
@@ -62,7 +62,7 @@ func (m *SensorParam) Validate(formats strfmt.Registry) error {
 
 func (m *SensorParam) validateIDParam(formats strfmt.Registry) error {
 
-	if err := validate.Required("idParam", "body", m.IDParam); err != nil {
+	if err := validate.Required("idParam", "body", int64(m.IDParam)); err != nil {
 		return err
 	}
 
@@ -83,7 +83,7 @@ func (m *SensorParam) validateParamCode(formats strfmt.Registry) error {
 
 func (m *SensorParam) validateParamFormula(formats strfmt.Registry) error {
 
-	if err := validate.Required("paramFormula", "body", m.ParamFormula); err != nil {
+	if err := validate.RequiredString("paramFormula", "body", string(m.ParamFormula)); err != nil {
 		return err
 	}
 
@@ -92,7 +92,7 @@ func (m *SensorParam) validateParamFormula(formats strfmt.Registry) error {
 
 func (m *SensorParam) validateParamName(formats strfmt.Registry) error {
 
-	if err := validate.Required("paramName", "body", m.ParamName); err != nil {
+	if err := validate.RequiredString("paramName", "body", string(m.ParamName)); err != nil {
 		return err
 	}
 

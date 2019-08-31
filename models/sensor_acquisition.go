@@ -19,11 +19,11 @@ type SensorAcquisition struct {
 
 	// date
 	// Required: true
-	Date *string `json:"date"`
+	Date string `json:"date"`
 
 	// value
 	// Required: true
-	Value *string `json:"value"`
+	Value string `json:"value"`
 }
 
 // Validate validates this sensor acquisition
@@ -46,7 +46,7 @@ func (m *SensorAcquisition) Validate(formats strfmt.Registry) error {
 
 func (m *SensorAcquisition) validateDate(formats strfmt.Registry) error {
 
-	if err := validate.Required("date", "body", m.Date); err != nil {
+	if err := validate.RequiredString("date", "body", string(m.Date)); err != nil {
 		return err
 	}
 
@@ -55,7 +55,7 @@ func (m *SensorAcquisition) validateDate(formats strfmt.Registry) error {
 
 func (m *SensorAcquisition) validateValue(formats strfmt.Registry) error {
 
-	if err := validate.Required("value", "body", m.Value); err != nil {
+	if err := validate.RequiredString("value", "body", string(m.Value)); err != nil {
 		return err
 	}
 

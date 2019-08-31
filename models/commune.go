@@ -16,13 +16,13 @@ import (
 type Commune struct {
 
 	// commune name
-	CommuneName string `json:"communeName,omitempty"`
+	CommuneName *string `json:"communeName,omitempty"`
 
 	// district name
-	DistrictName string `json:"districtName,omitempty"`
+	DistrictName *string `json:"districtName,omitempty"`
 
 	// province name
-	ProvinceName string `json:"provinceName,omitempty"`
+	ProvinceName *string `json:"provinceName,omitempty"`
 }
 
 // Validate validates this commune

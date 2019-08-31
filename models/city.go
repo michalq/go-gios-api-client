@@ -18,7 +18,7 @@ import (
 type City struct {
 
 	// address street
-	AddressStreet string `json:"addressStreet,omitempty"`
+	AddressStreet *string `json:"addressStreet,omitempty"`
 
 	// commune
 	// Required: true
@@ -26,11 +26,11 @@ type City struct {
 
 	// id
 	// Required: true
-	ID *int64 `json:"id"`
+	ID int64 `json:"id"`
 
 	// name
 	// Required: true
-	Name *string `json:"name"`
+	Name string `json:"name"`
 }
 
 // Validate validates this city
@@ -75,7 +75,7 @@ func (m *City) validateCommune(formats strfmt.Registry) error {
 
 func (m *City) validateID(formats strfmt.Registry) error {
 
-	if err := validate.Required("id", "body", m.ID); err != nil {
+	if err := validate.Required("id", "body", int64(m.ID)); err != nil {
 		return err
 	}
 
@@ -84,7 +84,7 @@ func (m *City) validateID(formats strfmt.Registry) error {
 
 func (m *City) validateName(formats strfmt.Registry) error {
 
-	if err := validate.Required("name", "body", m.Name); err != nil {
+	if err := validate.RequiredString("name", "body", string(m.Name)); err != nil {
 		return err
 	}
 

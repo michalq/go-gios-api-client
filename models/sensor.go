@@ -19,14 +19,14 @@ type Sensor struct {
 
 	// id
 	// Required: true
-	ID *int64 `json:"id"`
+	ID int64 `json:"id"`
 
 	// param
 	Param *SensorParam `json:"param,omitempty"`
 
 	// station Id
 	// Required: true
-	StationID *int64 `json:"stationId"`
+	StationID int64 `json:"stationId"`
 }
 
 // Validate validates this sensor
@@ -53,7 +53,7 @@ func (m *Sensor) Validate(formats strfmt.Registry) error {
 
 func (m *Sensor) validateID(formats strfmt.Registry) error {
 
-	if err := validate.Required("id", "body", m.ID); err != nil {
+	if err := validate.Required("id", "body", int64(m.ID)); err != nil {
 		return err
 	}
 
@@ -80,7 +80,7 @@ func (m *Sensor) validateParam(formats strfmt.Registry) error {
 
 func (m *Sensor) validateStationID(formats strfmt.Registry) error {
 
-	if err := validate.Required("stationId", "body", m.StationID); err != nil {
+	if err := validate.Required("stationId", "body", int64(m.StationID)); err != nil {
 		return err
 	}
 

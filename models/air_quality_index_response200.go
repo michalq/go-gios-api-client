@@ -18,80 +18,80 @@ import (
 type AirQualityIndexResponse200 struct {
 
 	// c6h6 calc date
-	C6h6CalcDate string `json:"c6h6CalcDate,omitempty"`
+	C6h6CalcDate *string `json:"c6h6CalcDate,omitempty"`
 
 	// c6h6 index level
-	C6h6IndexLevel string `json:"c6h6IndexLevel,omitempty"`
+	C6h6IndexLevel *string `json:"c6h6IndexLevel,omitempty"`
 
 	// c6h6 source data date
-	C6h6SourceDataDate string `json:"c6h6SourceDataDate,omitempty"`
+	C6h6SourceDataDate *string `json:"c6h6SourceDataDate,omitempty"`
 
 	// co calc date
-	CoCalcDate string `json:"coCalcDate,omitempty"`
+	CoCalcDate *string `json:"coCalcDate,omitempty"`
 
 	// co index level
-	CoIndexLevel string `json:"coIndexLevel,omitempty"`
+	CoIndexLevel *string `json:"coIndexLevel,omitempty"`
 
 	// co source data date
-	CoSourceDataDate string `json:"coSourceDataDate,omitempty"`
+	CoSourceDataDate *string `json:"coSourceDataDate,omitempty"`
 
 	// id
 	// Required: true
-	ID *int64 `json:"id"`
+	ID int64 `json:"id"`
 
 	// no2 calc date
-	No2CalcDate string `json:"no2CalcDate,omitempty"`
+	No2CalcDate *string `json:"no2CalcDate,omitempty"`
 
 	// no2 index level
-	No2IndexLevel string `json:"no2IndexLevel,omitempty"`
+	No2IndexLevel *string `json:"no2IndexLevel,omitempty"`
 
 	// no2 source data date
-	No2SourceDataDate string `json:"no2SourceDataDate,omitempty"`
+	No2SourceDataDate *string `json:"no2SourceDataDate,omitempty"`
 
 	// o3 calc date
-	O3CalcDate string `json:"o3CalcDate,omitempty"`
+	O3CalcDate *string `json:"o3CalcDate,omitempty"`
 
 	// o3 index level
-	O3IndexLevel string `json:"o3IndexLevel,omitempty"`
+	O3IndexLevel *string `json:"o3IndexLevel,omitempty"`
 
 	// o3 source data date
-	O3SourceDataDate string `json:"o3SourceDataDate,omitempty"`
+	O3SourceDataDate *string `json:"o3SourceDataDate,omitempty"`
 
 	// pm10 calc date
-	Pm10CalcDate string `json:"pm10CalcDate,omitempty"`
+	Pm10CalcDate *string `json:"pm10CalcDate,omitempty"`
 
 	// pm10 index level
-	Pm10IndexLevel string `json:"pm10IndexLevel,omitempty"`
+	Pm10IndexLevel *string `json:"pm10IndexLevel,omitempty"`
 
 	// pm10 source data date
-	Pm10SourceDataDate string `json:"pm10SourceDataDate,omitempty"`
+	Pm10SourceDataDate *string `json:"pm10SourceDataDate,omitempty"`
 
 	// pm25 calc date
-	Pm25CalcDate string `json:"pm25CalcDate,omitempty"`
+	Pm25CalcDate *string `json:"pm25CalcDate,omitempty"`
 
 	// pm25 index level
-	Pm25IndexLevel string `json:"pm25IndexLevel,omitempty"`
+	Pm25IndexLevel *string `json:"pm25IndexLevel,omitempty"`
 
 	// pm25 source data date
-	Pm25SourceDataDate string `json:"pm25SourceDataDate,omitempty"`
+	Pm25SourceDataDate *string `json:"pm25SourceDataDate,omitempty"`
 
 	// so2 calc date
-	So2CalcDate string `json:"so2CalcDate,omitempty"`
+	So2CalcDate *string `json:"so2CalcDate,omitempty"`
 
 	// so2 index level
-	So2IndexLevel string `json:"so2IndexLevel,omitempty"`
+	So2IndexLevel *string `json:"so2IndexLevel,omitempty"`
 
 	// so2 source data date
-	So2SourceDataDate string `json:"so2SourceDataDate,omitempty"`
+	So2SourceDataDate *string `json:"so2SourceDataDate,omitempty"`
 
 	// st calc date
-	StCalcDate string `json:"stCalcDate,omitempty"`
+	StCalcDate *string `json:"stCalcDate,omitempty"`
 
 	// st index level
 	StIndexLevel interface{} `json:"stIndexLevel,omitempty"`
 
 	// st source data date
-	StSourceDataDate string `json:"stSourceDataDate,omitempty"`
+	StSourceDataDate *string `json:"stSourceDataDate,omitempty"`
 }
 
 // Validate validates this air quality index response200
@@ -110,7 +110,7 @@ func (m *AirQualityIndexResponse200) Validate(formats strfmt.Registry) error {
 
 func (m *AirQualityIndexResponse200) validateID(formats strfmt.Registry) error {
 
-	if err := validate.Required("id", "body", m.ID); err != nil {
+	if err := validate.Required("id", "body", int64(m.ID)); err != nil {
 		return err
 	}
 
