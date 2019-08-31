@@ -1,4 +1,12 @@
 
+<a name="v0.1.1"></a>
+## [v0.1.1](https://github.com/michalq/go-gios-api-client/compare/v0.1.0...v0.1.1) (2019-09-01)
+
+### Fix
+
+* **core:** makefile fixes
+
+
 <a name="v0.1.0"></a>
 ## v0.1.0 (2019-09-01)
 
