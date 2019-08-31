@@ -10,6 +10,7 @@ import (
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // Sensor sensor
@@ -17,26 +18,45 @@ import (
 type Sensor struct {
 
 	// id
-	ID int64 `json:"id,omitempty"`
+	// Required: true
+	ID *int64 `json:"id"`
 
 	// param
 	Param *SensorParam `json:"param,omitempty"`
 
 	// station Id
-	StationID int64 `json:"stationId,omitempty"`
+	// Required: true
+	StationID *int64 `json:"stationId"`
 }
 
 // Validate validates this sensor
 func (m *Sensor) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateID(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateParam(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStationID(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *Sensor) validateID(formats strfmt.Registry) error {
+
+	if err := validate.Required("id", "body", m.ID); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -53,6 +73,15 @@ func (m *Sensor) validateParam(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *Sensor) validateStationID(formats strfmt.Registry) error {
+
+	if err := validate.Required("stationId", "body", m.StationID); err != nil {
+		return err
 	}
 
 	return nil

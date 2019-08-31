@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "gios-api-client/models"
+	models "github.com/michalq/go-gios-api-client/models"
 )
 
 // AllStationsReader is a Reader for the AllStations structure.

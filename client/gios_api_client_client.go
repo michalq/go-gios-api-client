@@ -11,8 +11,8 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	"gios-api-client/client/sensor"
-	"gios-api-client/client/stations"
+	"github.com/michalq/go-gios-api-client/client/sensor"
+	"github.com/michalq/go-gios-api-client/client/stations"
 )
 
 // Default gios API client HTTP client.

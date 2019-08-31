@@ -8,7 +8,9 @@ package models
 import (
 	strfmt "github.com/go-openapi/strfmt"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // SensorAcquisition sensor acquisition
@@ -16,14 +18,47 @@ import (
 type SensorAcquisition struct {
 
 	// date
-	Date string `json:"date,omitempty"`
+	// Required: true
+	Date *string `json:"date"`
 
 	// value
-	Value string `json:"value,omitempty"`
+	// Required: true
+	Value *string `json:"value"`
 }
 
 // Validate validates this sensor acquisition
 func (m *SensorAcquisition) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateDate(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateValue(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *SensorAcquisition) validateDate(formats strfmt.Registry) error {
+
+	if err := validate.Required("date", "body", m.Date); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *SensorAcquisition) validateValue(formats strfmt.Registry) error {
+
+	if err := validate.Required("value", "body", m.Value); err != nil {
+		return err
+	}
+
 	return nil
 }
 

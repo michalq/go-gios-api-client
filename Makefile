@@ -11,3 +11,6 @@ clean:
 
 view:
 	swagger serve ./swagger.json
+
+release:
+	$GOPATH/bin/git-chglog 

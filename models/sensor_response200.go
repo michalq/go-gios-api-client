@@ -12,6 +12,7 @@ import (
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // SensorResponse200 sensor response200
@@ -19,9 +20,11 @@ import (
 type SensorResponse200 struct {
 
 	// key
-	Key AcquisitionType `json:"key,omitempty"`
+	// Required: true
+	Key AcquisitionType `json:"key"`
 
 	// values
+	// Required: true
 	Values []*SensorAcquisition `json:"values"`
 }
 
@@ -45,10 +48,6 @@ func (m *SensorResponse200) Validate(formats strfmt.Registry) error {
 
 func (m *SensorResponse200) validateKey(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Key) { // not required
-		return nil
-	}
-
 	if err := m.Key.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("key")
@@ -61,8 +60,8 @@ func (m *SensorResponse200) validateKey(formats strfmt.Registry) error {
 
 func (m *SensorResponse200) validateValues(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Values) { // not required
-		return nil
+	if err := validate.Required("values", "body", m.Values); err != nil {
+		return err
 	}
 
 	for i := 0; i < len(m.Values); i++ {

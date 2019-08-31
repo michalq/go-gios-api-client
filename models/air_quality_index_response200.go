@@ -8,7 +8,9 @@ package models
 import (
 	strfmt "github.com/go-openapi/strfmt"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // AirQualityIndexResponse200 air quality index response200
@@ -34,7 +36,8 @@ type AirQualityIndexResponse200 struct {
 	CoSourceDataDate string `json:"coSourceDataDate,omitempty"`
 
 	// id
-	ID int64 `json:"id,omitempty"`
+	// Required: true
+	ID *int64 `json:"id"`
 
 	// no2 calc date
 	No2CalcDate string `json:"no2CalcDate,omitempty"`
@@ -93,6 +96,24 @@ type AirQualityIndexResponse200 struct {
 
 // Validate validates this air quality index response200
 func (m *AirQualityIndexResponse200) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *AirQualityIndexResponse200) validateID(formats strfmt.Registry) error {
+
+	if err := validate.Required("id", "body", m.ID); err != nil {
+		return err
+	}
+
 	return nil
 }
 

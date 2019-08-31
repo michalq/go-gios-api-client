@@ -151,6 +151,12 @@
     },
     "Station": {
       "type": "object",
+      "required": [
+        "id",
+        "stationName",
+        "gegrLat",
+        "gegrLon"
+      ],
       "properties": {
         "id": {
           "type": "integer",
@@ -172,6 +178,11 @@
     },
     "City": {
       "type": "object",
+      "required": [
+        "id",
+        "name",
+        "commune"
+      ],
       "properties": {
         "id": {
           "type": "integer",
@@ -210,6 +221,10 @@
     },
     "Sensor": {
       "type": "object",
+      "required": [
+        "id",
+        "stationId"
+      ],
       "properties": {
         "id": {
           "type": "integer",
@@ -226,6 +241,12 @@
     },
     "SensorParam": {
       "type": "object",
+      "required": [
+        "paramName",
+        "paramFormula",
+        "paramCode",
+        "idParam"
+      ],
       "properties": {
         "paramName": {
           "type": "string"
@@ -244,6 +265,10 @@
     },
     "SensorResponse200": {
       "type": "object",
+      "required": [
+        "key",
+        "values"
+      ],
       "properties": {
         "key": {
           "$ref": "#/definitions/AcquisitionType"
@@ -258,6 +283,10 @@
     },
     "SensorAcquisition": {
       "type": "object",
+      "required": [
+        "date",
+        "value"
+      ],
       "properties": {
         "date": {
           "type": "string"
@@ -269,6 +298,9 @@
     },
     "AirQualityIndexResponse200": {
       "type": "object",
+      "required": [
+        "id"
+      ],
       "properties": {
         "id": {
           "type": "integer",

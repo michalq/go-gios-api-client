@@ -10,6 +10,7 @@ import (
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // City city
@@ -20,13 +21,16 @@ type City struct {
 	AddressStreet string `json:"addressStreet,omitempty"`
 
 	// commune
-	Commune *Commune `json:"commune,omitempty"`
+	// Required: true
+	Commune *Commune `json:"commune"`
 
 	// id
-	ID int64 `json:"id,omitempty"`
+	// Required: true
+	ID *int64 `json:"id"`
 
 	// name
-	Name string `json:"name,omitempty"`
+	// Required: true
+	Name *string `json:"name"`
 }
 
 // Validate validates this city
@@ -34,6 +38,14 @@ func (m *City) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCommune(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateName(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -45,8 +57,8 @@ func (m *City) Validate(formats strfmt.Registry) error {
 
 func (m *City) validateCommune(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Commune) { // not required
-		return nil
+	if err := validate.Required("commune", "body", m.Commune); err != nil {
+		return err
 	}
 
 	if m.Commune != nil {
@@ -56,6 +68,24 @@ func (m *City) validateCommune(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *City) validateID(formats strfmt.Registry) error {
+
+	if err := validate.Required("id", "body", m.ID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *City) validateName(formats strfmt.Registry) error {
+
+	if err := validate.Required("name", "body", m.Name); err != nil {
+		return err
 	}
 
 	return nil

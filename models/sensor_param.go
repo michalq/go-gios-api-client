@@ -10,6 +10,7 @@ import (
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // SensorParam sensor param
@@ -17,23 +18,39 @@ import (
 type SensorParam struct {
 
 	// id param
-	IDParam int64 `json:"idParam,omitempty"`
+	// Required: true
+	IDParam *int64 `json:"idParam"`
 
 	// param code
-	ParamCode AcquisitionType `json:"paramCode,omitempty"`
+	// Required: true
+	ParamCode AcquisitionType `json:"paramCode"`
 
 	// param formula
-	ParamFormula string `json:"paramFormula,omitempty"`
+	// Required: true
+	ParamFormula *string `json:"paramFormula"`
 
 	// param name
-	ParamName string `json:"paramName,omitempty"`
+	// Required: true
+	ParamName *string `json:"paramName"`
 }
 
 // Validate validates this sensor param
 func (m *SensorParam) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateIDParam(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateParamCode(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateParamFormula(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateParamName(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -43,16 +60,39 @@ func (m *SensorParam) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *SensorParam) validateParamCode(formats strfmt.Registry) error {
+func (m *SensorParam) validateIDParam(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.ParamCode) { // not required
-		return nil
+	if err := validate.Required("idParam", "body", m.IDParam); err != nil {
+		return err
 	}
+
+	return nil
+}
+
+func (m *SensorParam) validateParamCode(formats strfmt.Registry) error {
 
 	if err := m.ParamCode.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("paramCode")
 		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *SensorParam) validateParamFormula(formats strfmt.Registry) error {
+
+	if err := validate.Required("paramFormula", "body", m.ParamFormula); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *SensorParam) validateParamName(formats strfmt.Registry) error {
+
+	if err := validate.Required("paramName", "body", m.ParamName); err != nil {
 		return err
 	}
 

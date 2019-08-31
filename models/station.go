@@ -10,6 +10,7 @@ import (
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // Station station
@@ -20,16 +21,20 @@ type Station struct {
 	City *City `json:"city,omitempty"`
 
 	// gegr lat
-	GegrLat string `json:"gegrLat,omitempty"`
+	// Required: true
+	GegrLat *string `json:"gegrLat"`
 
 	// gegr lon
-	GegrLon string `json:"gegrLon,omitempty"`
+	// Required: true
+	GegrLon *string `json:"gegrLon"`
 
 	// id
-	ID int64 `json:"id,omitempty"`
+	// Required: true
+	ID *int64 `json:"id"`
 
 	// station name
-	StationName string `json:"stationName,omitempty"`
+	// Required: true
+	StationName *string `json:"stationName"`
 }
 
 // Validate validates this station
@@ -37,6 +42,22 @@ func (m *Station) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCity(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateGegrLat(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateGegrLon(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStationName(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -59,6 +80,42 @@ func (m *Station) validateCity(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *Station) validateGegrLat(formats strfmt.Registry) error {
+
+	if err := validate.Required("gegrLat", "body", m.GegrLat); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Station) validateGegrLon(formats strfmt.Registry) error {
+
+	if err := validate.Required("gegrLon", "body", m.GegrLon); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Station) validateID(formats strfmt.Registry) error {
+
+	if err := validate.Required("id", "body", m.ID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Station) validateStationName(formats strfmt.Registry) error {
+
+	if err := validate.Required("stationName", "body", m.StationName); err != nil {
+		return err
 	}
 
 	return nil
