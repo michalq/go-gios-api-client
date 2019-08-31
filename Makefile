@@ -1,5 +1,5 @@
 .PHONY: all clean build view
-VERSION=v0.1.0
+VERSION=v0.1.1
 
 all: clean build
 
@@ -14,7 +14,7 @@ view:
 	swagger serve ./swagger.json
 
 release:
-	$GOPATH/bin/git-chglog --next-tag $(VERSION) -o CHANGELOG.md
+	$(GOPATH)/bin/git-chglog --next-tag $(VERSION) -o CHANGELOG.md
 	git add CHANGELOG.md
 	git commit -m "Release $(VERSION)"
 	git tag $(VERSION)
