@@ -1,4 +1,12 @@
 
+<a name="v0.1.2"></a>
+## [v0.1.2](https://github.com/michalq/go-gios-api-client/compare/v0.1.1...v0.1.2) (2019-09-02)
+
+### Chore
+
+* **core:** updated source of go-swagger
+
+
 <a name="v0.1.1"></a>
 ## [v0.1.1](https://github.com/michalq/go-gios-api-client/compare/v0.1.0...v0.1.1) (2019-09-01)
 
