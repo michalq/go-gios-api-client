@@ -16,5 +16,5 @@ view:
 release:
 	$(GOPATH)/bin/git-chglog --next-tag $(VERSION) -o CHANGELOG.md
 	git add CHANGELOG.md
-	git commit -m "Release $(VERSION)"
+	git commit -a -m "Release $(VERSION)"
 	git tag $(VERSION)
