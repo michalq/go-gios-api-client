@@ -1,4 +1,16 @@
 
+<a name="v0.1.3"></a>
+## [v0.1.3](https://github.com/michalq/go-gios-api-client/compare/v0.1.2...v0.1.3) (2019-09-04)
+
+### Chore
+
+* **core:** small fixes in readme and makefile
+
+### Fix
+
+* **core:** swagger fixes
+
+
 <a name="v0.1.2"></a>
 ## [v0.1.2](https://github.com/michalq/go-gios-api-client/compare/v0.1.1...v0.1.2) (2019-09-02)
 
