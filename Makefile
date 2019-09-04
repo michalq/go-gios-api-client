@@ -1,7 +1,10 @@
-.PHONY: all clean build view
+.PHONY: all install clean build view
 VERSION=v0.1.1
 
 all: clean build
+
+install:
+	go get -u github.com/michalq/go-swagger/cmd/swagger
 
 build:
 	$(GOPATH)/bin/swagger generate client -f ./swagger.json -A gios-api-client
