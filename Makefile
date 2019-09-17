@@ -1,5 +1,5 @@
 .PHONY: all install clean build view
-VERSION=v0.1.3
+VERSION=v0.1.4
 
 all: clean build
 

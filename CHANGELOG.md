@@ -1,4 +1,12 @@
 
+<a name="v0.1.4"></a>
+## [v0.1.4](https://github.com/michalq/go-gios-api-client/compare/v0.1.3...v0.1.4) (2019-09-17)
+
+### Fix
+
+* **core:** string to number in acquisition value:
+
+
 <a name="v0.1.3"></a>
 ## [v0.1.3](https://github.com/michalq/go-gios-api-client/compare/v0.1.2...v0.1.3) (2019-09-04)
 
