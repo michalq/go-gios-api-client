@@ -23,7 +23,7 @@ type SensorAcquisition struct {
 
 	// value
 	// Required: true
-	Value string `json:"value"`
+	Value float32 `json:"value"`
 }
 
 // Validate validates this sensor acquisition
@@ -55,7 +55,7 @@ func (m *SensorAcquisition) validateDate(formats strfmt.Registry) error {
 
 func (m *SensorAcquisition) validateValue(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("value", "body", string(m.Value)); err != nil {
+	if err := validate.Required("value", "body", float32(m.Value)); err != nil {
 		return err
 	}
 
